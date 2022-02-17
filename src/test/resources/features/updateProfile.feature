@@ -12,7 +12,7 @@ Feature: To verify BIO is update on profilepage
    
  Examples: 
       |username|password|
-      |saurabhitankar1|Welcome123|
+      |saurabh101@yopmail.com|Welcome123|
       
       
   

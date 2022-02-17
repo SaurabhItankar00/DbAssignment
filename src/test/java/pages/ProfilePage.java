@@ -20,7 +20,7 @@ public class ProfilePage {
 
 	WebDriverWait wait = null;
 
-	By btn_profileMenu = By.xpath("//a[@href='/saurabhitankar1' and @data-testid='AppTabBar_Profile_Link']");
+	By btn_profileMenu = By.xpath("//a[@href='/User101Test' and @data-testid='AppTabBar_Profile_Link']");
 	By btn_editProfile = By.xpath("//span[text()='Edit profile']");
 	By btn_uploadButton = By.xpath(
 			"//*[@id=\"layers\"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[2]/div/div/div[3]/input");
@@ -75,8 +75,10 @@ public class ProfilePage {
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(50,250)", "");
-		if (driver.findElement(txt_feild).getText() != null) {
+		if (driver.findElement(txt_feild).getText()!= null ||driver.findElement(txt_feild).getText()==" " ) {
 			driver.findElement(txt_feild).clear();
+			System.out.println("HI in BIO block");
+			driver.findElement(txt_feild).sendKeys("Selenium Automation user");
 		}
 		else
 		{
@@ -86,8 +88,9 @@ public class ProfilePage {
 
 	public void updateLocation() {
 
-		if (driver.findElement(txt_location).getText() != null) {
+		if (driver.findElement(txt_location).getText() != null|| driver.findElement(txt_location).getText()==" ") {
 			driver.findElement(txt_location).clear();
+			driver.findElement(txt_location).sendKeys("Pune");
 		}
 		else
 		{
@@ -98,8 +101,9 @@ public class ProfilePage {
 
 	public void updateWebsite() {
 
-		if (driver.findElement(txt_website).getText() != null) {
+		if (driver.findElement(txt_website).getText() != null || driver.findElement(txt_website).getText()==" ") {
 			driver.findElement(txt_website).clear();
+			driver.findElement(txt_website).sendKeys("twitter.com");
 		}
 		else
 		{
@@ -109,9 +113,9 @@ public class ProfilePage {
 	}
 
 	public void verifyText() {
-		String bio_txt = driver.findElement(By.xpath("//div[@data-testid='UserDescription']")).getText();
-		String location_txt = driver.findElement(By.xpath("//span[@data-testid='UserLocation']")).getText();
-		String website_txt = driver.findElement(By.xpath("//a[@data-testid='UserUrl']")).getText();
+		String bio_txt = driver.findElement(txt_feild).getText();
+		String location_txt = driver.findElement(txt_location).getText();
+		String website_txt = driver.findElement(txt_website).getText();
 
 		Assert.assertEquals(bio_txt, "Selenium Automation user");
 		Assert.assertEquals(location_txt, "Pune");

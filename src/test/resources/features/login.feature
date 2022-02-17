@@ -10,4 +10,4 @@ Feature: Test login fuctionality
 
     Examples: 
       |username|password|
-      |saurabhitankar1|Welcome123|
+      |saurabh101@yopmail.com|Welcome123|

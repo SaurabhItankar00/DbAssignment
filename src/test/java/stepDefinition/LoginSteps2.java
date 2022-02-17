@@ -22,19 +22,24 @@ import util.BeforeTestSteps;
 
 public class LoginSteps2 {
 
-	WebDriver driver = null;
+	WebDriver driver;
 	WebDriverWait wait = null;
 	LoginPage login;
+	BeforeTestSteps beforeTestStep;
 	
 
 	@Given("user is on login page")
 	public void user_is_on_login_page() throws InterruptedException {
-		 String projectPath = System.getProperty("user.dir");
-		 System.out.println(" Project path is " + projectPath);
-		 System.setProperty("webdriver.chrome.driver", projectPath +
-		 "/src/test/resources/ChromeDriver/chromedriver.exe");
-		 driver = new ChromeDriver();
-		 driver.get("https://twitter.com/i/flow/login");
+		/*
+		 * String projectPath = System.getProperty("user.dir");
+		 * System.out.println(" Project path is " + projectPath);
+		 * System.setProperty("webdriver.chrome.driver", projectPath +
+		 * "/src/test/resources/ChromeDriver/chromedriver.exe"); driver = new
+		 * ChromeDriver(); driver.get("https://twitter.com/i/flow/login");
+		 */
+		beforeTestStep = new BeforeTestSteps();
+		driver = beforeTestStep.init();
+		
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		Thread.sleep(5000);
 	}
@@ -68,6 +73,7 @@ public class LoginSteps2 {
 		
 		
 		login.checkhomePage();
+		driver.close();
 	}
 
 	
