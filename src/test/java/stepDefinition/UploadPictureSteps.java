@@ -14,6 +14,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
 import pages.ProfilePage;
+import util.BeforeTestSteps;
 
 public class UploadPictureSteps {
 
@@ -21,15 +22,12 @@ public class UploadPictureSteps {
 	WebDriverWait wait = null;
 	LoginPage login;
 	ProfilePage profilePage;
+	BeforeTestSteps beforeTestStep;
 
 	@Given("^User is able to login with valid credentials (.*) and (.*)$")
 	public void user_is_able_to_login_with_valid_credentials(String username, String password) throws InterruptedException {
-		 String projectPath = System.getProperty("user.dir");
-		 System.out.println(" Project path is " + projectPath);
-		 System.setProperty("webdriver.chrome.driver", projectPath +
-		 "/src/test/resources/ChromeDriver/chromedriver.exe");
-		 driver = new ChromeDriver();
-		 driver.get("https://twitter.com/i/flow/login");
+		beforeTestStep = new BeforeTestSteps();
+		driver = beforeTestStep.init();
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		Thread.sleep(5000);
 		login = new LoginPage(driver);
