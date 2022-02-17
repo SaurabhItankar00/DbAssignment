@@ -26,6 +26,7 @@ public class LoginPage {
 	public void enterUsername(String username) {
 
 		driver.findElement(txt_username).sendKeys(username);
+
 	}
 
 	public void clicknext() {
@@ -38,6 +39,11 @@ public class LoginPage {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		Thread.sleep(5000);
 		wait = new WebDriverWait(driver, 20);
+		if (driver.findElement(By.xpath("//span[text()='Enter your phone number or username']")).isDisplayed()) {
+			driver.findElement(By.xpath("//input[@name='text']")).sendKeys("User101Test");
+			driver.findElement(By.xpath("//div[@data-testid='ocfEnterTextNextButton']")).click();
+		}
+
 		WebElement passwordFeild;
 		passwordFeild = wait.until(ExpectedConditions.visibilityOfElementLocated(txt_password));
 		if (passwordFeild.isEnabled()) {
@@ -61,11 +67,11 @@ public class LoginPage {
 
 	public void checkhomePage() {
 		WebElement home;
-		home = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(btn_home));
+		home = wait.until(ExpectedConditions.visibilityOfElementLocated(btn_home));
 		home.isDisplayed();
-		
+
 	}
+
 	public void LoginValidUser(String username, String password) throws InterruptedException {
 		enterUsername(username);
 		clicknext();
